@@ -27,10 +27,16 @@ const geolocationOptions = {
   maximumAge: 1000 * 3600 * 24,
 };
 
+
 function MakeForm() {
-  const { rad, setRad } = useDirections();
+  
+  const [rad, setRad] = useState();
+  const [result, setResult] = useState(false);
   const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
+  const [disabled, setDisabled] = useState(false);
   const radius = useRef(0);
+  useDirections(result, currentLocation, rad);
+
   return (
     <Box
       component="form"
@@ -52,7 +58,7 @@ function MakeForm() {
         <TextField sx={{ width: '25%' }} id="outlined-number" label="Radius (mi)" type="number" InputLabelProps={{ shrink: true, }} inputRef={radius} />
       </Box>
       <Box sx={{ m: 2 }}>
-        <Button variant="contained" size="medium" onClick={() => setRad(radius.current.value)}>
+        <Button variant="contained" size="medium" onClick={() => {setRad(radius.current.value); setResult(!result); setDisabled(true);}} disabled={disabled}>
           Generate
         </Button>
         <Directions rad={rad} loc={currentLocation} />
