@@ -1,11 +1,14 @@
 import Location from './Location'
+import Directions from './Directions'
 import Button from '@mui/material/Button';
 import useCurrentLocation from './useCurrentLocation';
+import useDirections from './useDirections';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { teal } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useEffect, useRef } from "react";
 
 const theme = createTheme({
   palette: {
@@ -24,9 +27,10 @@ const geolocationOptions = {
   maximumAge: 1000 * 3600 * 24,
 };
 
-
 function MakeForm() {
+  const { rad, setRad } = useDirections();
   const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
+  const radius = useRef(0);
   return (
     <Box
       component="form"
@@ -45,14 +49,14 @@ function MakeForm() {
         <Location location={currentLocation} error={currentError} />
       </Box>
       <Box sx={{ mb: 4 }}>
-        <TextField sx={{ width: '25%' }} id="outlined-number" label="Radius (mi)" type="number" InputLabelProps={{ shrink: true, }} />
+        <TextField sx={{ width: '25%' }} id="outlined-number" label="Radius (mi)" type="number" InputLabelProps={{ shrink: true, }} inputRef={radius} />
       </Box>
       <Box sx={{ m: 2 }}>
-        <Button variant="contained" size="medium">
+        <Button variant="contained" size="medium" onClick={() => setRad(radius.current.value)}>
           Generate
         </Button>
+        <Directions rad={rad} loc={currentLocation} />
       </Box>
-
     </Box>
   );
 }
