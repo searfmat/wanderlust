@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-//Hook
+
 const useCurrentLocation = (options = {}) => {
 
   const [location, setLocation] = useState();
