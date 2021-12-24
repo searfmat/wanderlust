@@ -1,8 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
 import Typography from '@mui/material/Typography';
 
-//Component 
 const Location = ({ location, error }) => {
   return (
     <div>
@@ -19,11 +16,6 @@ const Location = ({ location, error }) => {
       {error && <p className="errorMessage">Location Error: {error}</p>}
     </div>
   );
-};
-
-Location.propTypes = {
-  location: PropTypes.object,
-  error: PropTypes.string,
 };
 
 export default Location;

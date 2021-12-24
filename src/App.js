@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { teal } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 const theme = createTheme({
   palette: {
@@ -35,7 +35,7 @@ function MakeForm() {
   const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
   const [disabled, setDisabled] = useState(false);
   const radius = useRef(0);
-  useDirections(result, currentLocation, rad);
+  const directions = useDirections(result, currentLocation, rad);
 
   return (
     <Box
@@ -61,7 +61,11 @@ function MakeForm() {
         <Button variant="contained" size="medium" onClick={() => {setRad(radius.current.value); setResult(!result); setDisabled(true);}} disabled={disabled}>
           Generate
         </Button>
-        <Directions rad={rad} loc={currentLocation} />
+      </Box>
+      <Box sx={{   display: "flex",
+  justifyContent: "center",
+  alignItems: "center"}}>
+        <Directions directions={directions} />
       </Box>
     </Box>
   );
