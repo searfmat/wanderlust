@@ -6,6 +6,7 @@ import TurnRightIcon from '@mui/icons-material/TurnRight';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const Directions = ({ directions, coords }) => {
 
@@ -40,6 +41,9 @@ const Directions = ({ directions, coords }) => {
           <Typography variant="body1" component="div" gutterBottom>
             End coordinates: {coords}
           </Typography>
+          <Button variant="contained" size="medium" >
+          Spoil
+          </Button>
         </>
       ) : (
         <>{null}</>
