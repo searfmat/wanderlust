@@ -66,7 +66,7 @@ function MakeForm() {
         justifyContent: "center",
         alignItems: "center"
       }}>
-        <Directions directions={directions} coords={coords} />
+        <Directions directions={directions} coords={coords} xid={xid} />
       </Box>
     </Box>
   );

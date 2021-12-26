@@ -33,7 +33,6 @@ const useDirections = (res, loc, rad) => {
                 }
             })
                 .then(function (response) {
-                    console.log(response);
                     for (let item of response.data.features) {
                         potential.push(item.geometry.coordinates);
                         xids.push(item.properties.xid);
@@ -52,7 +51,6 @@ const useDirections = (res, loc, rad) => {
                         }
                     })
                         .then(function (response) {
-                            console.log(response);
                             for (let item of response.data.resourceSets[0].resources[0].routeLegs[0].itineraryItems) {
                                 temp.push("(" + item.travelDistance + " mi) " + item.instruction.text);
                             } setDirections(temp);

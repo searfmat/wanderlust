@@ -8,7 +8,11 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-const Directions = ({ directions, coords }) => {
+const Directions = ({ directions, coords, xid }) => {
+
+  const handleClick = () => {
+    window.open(" http://www.google.com/maps/place/" + coords);
+  };
 
   const listSteps = directions.map((step, index) =>
     <ListItem key={index}>
@@ -38,10 +42,7 @@ const Directions = ({ directions, coords }) => {
           <List>
             {listSteps}
           </List>
-          <Typography variant="body1" component="div" gutterBottom>
-            End coordinates: {coords}
-          </Typography>
-          <Button variant="contained" size="medium" >
+          <Button variant="contained" size="medium" onClick={() => {handleClick();}} >
           Spoil
           </Button>
         </>
